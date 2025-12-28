@@ -1,11 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=at_cf
-#SBATCH --array=1-2
+#SBATCH --job-name=pre_cf
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu
 #SBATCH --time=0-100:00:00
 #SBATCH --mem=10GB
-#SBATCH --output=at_cf%a.log
+#SBATCH --output=pre_cf.log
 
 module load rocky8-spack/master > /dev/null
 module load cuda/11.3.1-gcc-10.3.0-ehi3 > /dev/null
@@ -23,5 +22,4 @@ python -m pip install --quiet --user torch torchvision git+https://github.com/Ha
 
 python -m pip list
 
-python ../at.py 0 0
-
+python ../pretrain.py 0 0
